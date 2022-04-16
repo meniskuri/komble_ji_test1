@@ -1,0 +1,111 @@
+// vinaxav super carel clean up s laistvis
+function start() {
+    if (frontIsBlocked()){
+        cleanAvenue();
+        
+    } else {
+        
+        while(leftIsClear()){
+            cleanStreat();
+            ukandabruneba();
+            checkNextStreat();
+            if(leftIsBlocked()){
+                cleanStreat();
+            }
+        }
+        
+        
+    }
+	if (leftIsBlocked()){
+	    cleanStreat();
+	}
+	
+	// უკან დაბრუნება lai გვანცა ნინოს 
+	if (frontIsBlocked() && leftIsBlocked()){
+	    turnAround();
+	    while(frontIsClear()){
+	        move();
+	        if(frontIsBlocked() && facingWest()){
+	            turnLeft();
+	            if (frontIsClear()){
+	                move();
+	            }
+	        } 
+	    } 
+	} 
+	if (frontIsBlocked() && facingSouth()){
+	    turnLeft();
+	}
+}
+
+
+// წმენდს ვერტიკალურს
+function cleanAvenue(){
+    turnLeft();
+    while(frontIsClear()){
+        if(ballsPresent()){
+            takeBall();
+            move();
+        } else {
+            move();
+        }
+    }
+    if(frontIsBlocked()){
+        if(ballsPresent()){
+            takeBall();
+        }
+    }
+}
+// წმენდს ჰორიზონტალურს
+function cleanStreat(){
+    while(frontIsClear()){
+        if(ballsPresent()){
+            takeBall();
+            move();
+        } else {
+            move();
+        }
+    }
+    if(frontIsBlocked()){
+        if(ballsPresent()){
+            takeBall();
+        }
+    }
+}
+
+function ukandabruneba(){
+    turnAround();
+    while(frontIsClear()){
+        move();
+        cleanStreat();
+    }
+}
+
+function checkNextStreat(){
+ 
+    if(rightIsClear()){
+        turnRight();
+        move();
+        turnRight();
+    }
+}
+
+// es jer ar mchirdeba
+function suleastside(){
+    if(facingNorth()){
+        turnRight();
+    }
+    
+    if(facingEast()){
+        // iyod rogorc aris
+    }
+    
+    if(facingWest()){
+        //  turnAround();
+    }
+    
+     if(facingSouth()){
+        turnLeft();
+    }
+    
+}
